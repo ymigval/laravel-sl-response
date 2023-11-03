@@ -33,6 +33,8 @@ php artisan vendor:publish --tag="slresponse"
 
 ## Usage
 
+Response from a route or controller method.
+
 ```php
 use Ymigval\LaravelSLResponse\Facades\SLResponse;
 use Ymigval\LaravelSLResponse\Exceptions\SLException;
