@@ -43,7 +43,7 @@
                 "Ymigval\\LaravelSLResponse\\SLProvider"
             ],
             "aliases": {
-                "SLResponse": "Illuminate\\Support\\Facades\\Facade\\SLResponse"
+                "SLResponse": "Ymigval\\LaravelSLResponse\\Facades\\SLResponse"
             }
         }
     },
