@@ -1,0 +1,35 @@
+{
+    "name": "ymigval/laravel-sl-response",
+    "description": "n/a",
+    "require-dev": {
+        "orchestra/testbench": "^8.14",
+        "guzzlehttp/guzzle": "^7.8"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Ymigval\\LaravelSLResponse\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Ymigval\\LaravelSLResponse\\Tests\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Yordan",
+            "email": "banatube@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Ymigval\\LaravelSLResponse\\SLProvider"
+            ],
+            "aliases": {
+                "SLResponse": "Ymigval\\LaravelSLResponse\\Facades\\SL"
+            }
+        }
+    }
+}
