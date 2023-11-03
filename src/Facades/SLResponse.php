@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Facade;
  *
  * @see \Ymigval\LaravelSLResponse\SL
  */
-class SL extends Facade
+class SLResponse extends Facade
 {
     /**
      * Get the registered name of the component.

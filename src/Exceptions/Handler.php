@@ -28,8 +28,7 @@ class Handler extends \App\Exceptions\Handler
         $this->renderable(function (Throwable $e, Request $request) {
             if ($request->is('api/*')) {
                 if (!is_null($statusCode = static::getStatusCodeException($e))) {
-                    $stub = SLArrayStub::failure();
-                    $stub['errors'] = array_merge($stub['errors'], static::getMessageFromException($e));
+                    $stub = SLArrayStub::failure(static::getMessageFromException($e));
                     return Response::json($stub, $statusCode);
                 }
             }

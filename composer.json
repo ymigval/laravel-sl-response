@@ -1,11 +1,32 @@
 {
     "name": "ymigval/laravel-sl-response",
-    "description": "n/a",
+    "type": "library",
+    "description": "A Laravel package for streamlined API response formatting and management, ensuring consistency and adherence to API standards. Simplify error handling and customize response formats with ease.",
+    "license": "MIT",
+    "keywords": [
+        "laravel",
+        "api",
+        "response",
+        "format",
+        "json",
+        "standard",
+        "formatting"
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "authors": [
+        {
+            "name": "Yordan",
+            "email": "banatube@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^8.0"
+    },
     "require-dev": {
         "orchestra/testbench": "^8.14",
         "guzzlehttp/guzzle": "^7.8"
     },
-    "license": "MIT",
     "autoload": {
         "psr-4": {
             "Ymigval\\LaravelSLResponse\\": "src/"
@@ -16,20 +37,20 @@
             "Ymigval\\LaravelSLResponse\\Tests\\": "tests/"
         }
     },
-    "authors": [
-        {
-            "name": "Yordan",
-            "email": "banatube@gmail.com"
-        }
-    ],
     "extra": {
         "laravel": {
             "providers": [
                 "Ymigval\\LaravelSLResponse\\SLProvider"
             ],
             "aliases": {
-                "SLResponse": "Ymigval\\LaravelSLResponse\\Facades\\SL"
+                "SLResponse": "Illuminate\\Support\\Facades\\Facade\\SLResponse"
             }
         }
-    }
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/ymigval/laravel-sl-response"
+        }
+    ]
 }

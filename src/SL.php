@@ -18,8 +18,11 @@ class SL
             $data = $data->response()->getData(true);
         }
 
-        $stub = SLArrayStub::success();
-        $stub['result'] = $data;
+        if (is_object($data) && method_exists($data, 'toArray')) {
+            $data = $data->toArray();
+        }
+
+        $stub = SLArrayStub::success($data);
 
         return Response::json($stub);
     }
@@ -33,19 +36,13 @@ class SL
     public function error(string|array $error, string $codeError = null): JsonResponse
     {
         if (!is_null($codeError) && !is_array($error)) {
-            $errorWithCode = [
+            $error = [
                 'code' => $codeError,
                 'message' => $error
             ];
         }
 
-        $stub = SLArrayStub::failure();
-
-        if (is_array($error)) {
-            $stub['errors'] = array_merge($stub['errors'], $error);
-        } else {
-            $stub['errors'][] = $errorWithCode ?? $error;
-        }
+        $stub = SLArrayStub::failure($error);
 
         return Response::json($stub, 422);
     }

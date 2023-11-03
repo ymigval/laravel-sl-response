@@ -4,6 +4,7 @@ namespace Ymigval\LaravelSLResponse;
 
 use Illuminate\Contracts\Debug\ExceptionHandler;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\ServiceProvider;
 use Ymigval\LaravelSLResponse\Exceptions\Handler;
@@ -28,6 +29,10 @@ class SLProvider extends ServiceProvider
         $this->app->bind('SL', function () {
             return new SL();
         });
+
+        $this->mergeConfigFrom(
+            __DIR__ . '/../config/slresponse.php', 'slresponse'
+        );
     }
 
     /**
@@ -39,6 +44,10 @@ class SLProvider extends ServiceProvider
     {
         $this->slMessage();
         $this->slError();
+        $this->slWithoutWrapping();
+        $this->publisheConfig();
+
+        JsonResource::withoutWrapping();
     }
 
     protected function slMessage(): void
@@ -71,5 +80,28 @@ class SLProvider extends ServiceProvider
 
             return Response::json($stub, 422);
         });
+    }
+
+
+    protected function slWithoutWrapping()
+    {
+        JsonResponse::macro('withoutWrapping', function () {
+
+            $stub = $this->getData(true);
+
+            if (!is_null(config('slresponse.wrapping')) && !empty(config('slresponse.wrapping'))) {
+                $stub = array_merge($stub[config('slresponse.wrapping')], $stub);
+                unset($stub[config('slresponse.wrapping')]);
+            }
+
+            return Response::json($stub);
+        });
+    }
+
+    protected function publisheConfig(): void
+    {
+        $this->publishes([
+            __DIR__ . '/../config/slresponse.php' => config_path('slresponse.php'),
+        ], 'slresponse');
     }
 }

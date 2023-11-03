@@ -5,25 +5,31 @@ namespace Ymigval\LaravelSLResponse;
 class SLArrayStub
 {
     /**
+     * @param $data
      * @return array
      */
-    public static function success(): array
+    public static function success($data): array
     {
-        return [
-            'result' => [],
-            'messages' => [],
-            'success' => true,
-        ];
+        if (!is_null(config('slresponse.wrapping')) && !empty(config('slresponse.wrapping'))) {
+            $wrapping = [config('slresponse.wrapping') => $data];
+        }
+
+        return array_merge(
+            $wrapping ?? $data,
+            [
+                'success' => true,
+            ]
+        );
     }
 
     /**
+     * @param $error
      * @return array
      */
-    public static function failure(): array
+    public static function failure($error): array
     {
         return [
-            'errors' => [],
-            'messages' => [],
+            'errors' => is_array($error) ? $error : [$error],
             'success' => false,
         ];
     }
