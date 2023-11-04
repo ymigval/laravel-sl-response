@@ -56,6 +56,9 @@ return SLResponse::ok(User::find(6)->isAdmin())
 // Return an error response.
 return SLResponse::error('Limit exceeded');
 
+// Additionally, you can add an error code as the second argument.
+return SLResponse::error('Limit exceeded', '3748');
+
 // Throw an exception
 throw new SLException('This is a message.');
 ```
