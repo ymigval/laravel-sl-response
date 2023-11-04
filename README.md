@@ -1,4 +1,4 @@
-# ymigval/laravel-sl-response
+# Laravel API Response Formatter
 
 The `ymigval/laravel-sl-response` package simplifies API response management in Laravel applications. It allows you to structure and format API responses with ease, ensuring consistency and adherence to API standards.
 
