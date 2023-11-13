@@ -90,8 +90,9 @@ class SLProvider extends ServiceProvider
             $stub = $this->getData(true);
 
             if (!is_null(config('slresponse.wrapping')) && !empty(config('slresponse.wrapping'))) {
-                $stub = array_merge($stub[config('slresponse.wrapping')], $stub);
+                $content = $stub[config('slresponse.wrapping')];
                 unset($stub[config('slresponse.wrapping')]);
+                $stub = array_merge($content, $stub);
             }
 
             return Response::json($stub);
