@@ -12,4 +12,4 @@ All notable changes to `ymigval/laravel-sl-response` will be documented in this 
 
 ## 1.0.2 - 2024-12-26
 ### Fix
-- Dependency update.
+- Update .gitignore
